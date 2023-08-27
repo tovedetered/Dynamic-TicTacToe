@@ -14,14 +14,14 @@ public:
 	bool checkTie();
 
 	virtual void drawBoard() = 0;
+	virtual void getInput() = 0;
 
 
 protected:
 
 	char* const spaces;
 
-	 //will handle drawing to user
-	//virtual void getInput(); //will handle obtaining input
+	 //will handle obtaining input
 	//virtual void displayOutput(); //will handle displaying output like "please enter column"
 
 private:

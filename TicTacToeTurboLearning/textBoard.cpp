@@ -1,5 +1,6 @@
 #include "textBoard.h"
 #include <iostream>
+#include <SKUtils.h>
 
 using namespace std;
 
@@ -37,4 +38,43 @@ void TextBoard::drawBoard() {
 		cout << endl;
 	}
 	j = 0;
+}
+
+void TextBoard::getInput()
+{
+	bool inputCheck = true;
+	int column = -1;
+	int row = -1;
+	while (inputCheck) {
+		std::cout << "Please indicate the column you would like to play: ";
+		std::cin >> column;
+		column = CheckInput(column);
+		while (true) {
+			if (column > columns || column < 0) {
+				std::cout << "Invalid Input, Enter a Number between 0 and " << columns << ": ";
+				std::cin >> column;
+				column = CheckInput(column);
+			}
+			else {
+				break;
+			}
+		}
+		std::cout << "Please indicate the row where you would like to play: ";
+		std::cin >> row;
+		row = CheckInput(row);
+		while (true) {
+			if (row > rows || rows < 0) {
+				std::cout << "Invalid Input, Enter a Number between 0 and " << rows << ": ";
+				std::cin >> row;
+				row = CheckInput(row);
+			}
+			else {
+				break;
+			}
+		}
+		if (spaces[row * column] != ' ') {
+			std::cout << "That Space is Already Taken!";
+		}
+
+	}
 }
