@@ -133,24 +133,81 @@ void runGame() {
 
 void twoPlayerGame()
 {
-	bool running = true;
+	bool playing = true;
+	int choice = 0;
 
-	Board* board = new TextBoard(game.rows, game.columns, game.winCondition);
+	while (playing) {
 
-	cout << "***** Two Player Game *****" << endl
-		<< "Welcome! Player One will be X and Player Two will be O!" << endl
-		<< "To place your symbol in a position select a row (1-max)" << endl
-		<< "Then select a column (1-max)" << endl
-		<< "3... 2... 1... Beginning Game" << endl;
+		bool running = true;
 
-	while (running) {
+		Board* board = new TextBoard(game.rows, game.columns, game.winCondition);
 
+		cout << "***** Two Player Game *****" << endl
+			<< "Welcome! Player One will be X and Player Two will be O!" << endl
+			<< "To place your symbol in a position select a row (1-max)" << endl
+			<< "Then select a column (1-max)" << endl
+			<< "3... 2... 1... Beginning Game" << endl;
+		
+		cout << "**********************" << endl;
+		board->drawBoard();
+		cout << "**********************" << endl;
+
+		while (running) {
+			//Player One Turn
+			cout << "***** Player One *****" << endl;
+			board->playerTurn(1);
+			if (board->checkWinner()) {
+				cout << "Player One Won!" << endl
+					<< "Congratulations!" << endl;
+				running = false;
+				break;
+			}
+			if (board->checkTie()) {
+				cout << "Its a Tie!" << endl;
+			}
+			cout << "**********************" << endl;
+
+			//Player Two Turn
+			cout << "***** Player Two *****" << endl;
+			board->playerTurn(2);
+			if (board->checkWinner()) {
+				cout << "Player Two Won!" << endl
+					<< "Congratulations!" << endl;
+				running = false;
+				break;
+			}
+			if (board->checkTie()) {
+				cout << "Its a Tie!" << endl;
+			}
+			cout << "**********************" << endl;
+		}
+
+		delete board;
+
+		cout << "Would you like to play again?" << endl
+			<< "1 for Yes, 2 for No" << endl;
+		cin >> choice;
+		choice = CheckInput(choice);
+		choice = clamp(1, choice, 2);
+		if (choice == 2) {
+			playing = false;
+			break;
+		}
+		else if (choice == 1) {
+			cout << "Resetting Game!" << endl;
+		}
+		else {
+			throw unexpected;
+		}
 	}
-
-	delete board;
 }
 
 void goodBye()
 {
-
+	cout << "***** Good Bye *****" << endl;
+	cout << "This Game was Made by:" << endl
+		<< "Spenser Kramer" << endl
+		<< "With Help From: " << endl
+		<< "Trevor Kramer" << endl
+		<< "Thanks For Playing!" << endl;
 }

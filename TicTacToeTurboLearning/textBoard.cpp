@@ -43,15 +43,15 @@ void TextBoard::drawBoard() {
 void TextBoard::getInput()
 {
 	bool inputCheck = true;
-	int column = -1;
-	int row = -1;
+	unsigned int column = 0;
+	unsigned int row = 0;
 	while (inputCheck) {
-		std::cout << "Please indicate the column you would like to play: ";
+		std::cout << "Please indicate the column where you would like to play: ";
 		std::cin >> column;
 		column = CheckInput(column);
 		while (true) {
-			if (column > columns || column < 0) {
-				std::cout << "Invalid Input, Enter a Number between 0 and " << columns << ": ";
+			if (column > columns + 1 || column < 1) {
+				std::cout << "Invalid Input, Enter a Number between 0 and " << columns + 1 << ": ";
 				std::cin >> column;
 				column = CheckInput(column);
 			}
@@ -63,8 +63,8 @@ void TextBoard::getInput()
 		std::cin >> row;
 		row = CheckInput(row);
 		while (true) {
-			if (row > rows || rows < 0) {
-				std::cout << "Invalid Input, Enter a Number between 0 and " << rows << ": ";
+			if (row > rows + 1 || rows < 1) {
+				std::cout << "Invalid Input, Enter a Number between 1 and " << rows + 1 << ": ";
 				std::cin >> row;
 				row = CheckInput(row);
 			}
@@ -72,9 +72,20 @@ void TextBoard::getInput()
 				break;
 			}
 		}
-		if (spaces[row * column] != ' ') {
-			std::cout << "That Space is Already Taken!";
+		row = row - 1;
+		column = column - 1;
+
+		if (spaces[(row * columns) + column] != ' ') {
+			std::cout << "That Space is Already Taken!" << endl;
+		}
+		else {
+			inputCheck = false;
 		}
 
 	}
+	
+
+	selectedColumn = column;
+	selectedRow = row;
 }
+

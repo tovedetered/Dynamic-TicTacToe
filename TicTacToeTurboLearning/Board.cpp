@@ -1,10 +1,14 @@
 #include "Board.h"
 #include <iostream>
+#include <SKUtils.h>
 #include "textBoard.h"
+#include <exception>
+
 
 Board::Board(unsigned int startRows, unsigned int startColumns, unsigned int winCond) : 
 			 rows(startRows), columns(startColumns), winCondition(winCond), spaces(new char[rows * columns])
 {
+	activePlayerChar = playerOne;
 	initBoard();
 	
 }
@@ -21,11 +25,40 @@ void Board::initBoard()
 	}
 }
 
-void Board::updateBoard(unsigned int selectedRow, unsigned int selectedColumn)
+void Board::updateBoard()
 {
-	activePlayerChar = playerOne;
+	bool checkInput = true;
+
+	while (checkInput) {
+		if (selectedRow < 0 || selectedRow > rows) {
+			throw unexpected;
+		}
+		if (selectedColumn < 0 || selectedColumn > rows) {
+			throw unexpected;
+		}
+		else {
+			checkInput = false;
+		}
+	}
+
 	spaces[(selectedRow * columns) + selectedColumn] = activePlayerChar;
 	drawBoard();
+}
+
+void Board::playerTurn(int turn) {
+	
+	if (turn == 1) {
+		getInput();
+		updateBoard();
+	}
+	else if (turn == 2) {
+		getInput();
+		updateBoard();
+	}
+	else {
+		throw unexpected;
+	}
+
 }
 
 bool Board::checkWinner()
@@ -47,7 +80,7 @@ bool Board::checkWinner()
 	for (int i = 0; i < columns; i++) {
 		int counter = 0;
 		for (int j = 0; j < rows; j++) {
-			if (spaces[(i * columns) + j] == activePlayerChar) {
+			if (spaces[(j * columns) + i] == activePlayerChar) {
 				counter++;
 				if (counter == winCondition) {
 					return true;
@@ -58,6 +91,18 @@ bool Board::checkWinner()
 			}
 		}
 	}
+
+	if (activePlayerChar == playerOne) {
+		activePlayerChar = playerTwo;
+	}
+	else if (activePlayerChar == playerTwo) {
+		activePlayerChar = playerOne;
+	}
+	else {
+		throw unexpected;
+	}
+
+
 	return false;
 }
 
