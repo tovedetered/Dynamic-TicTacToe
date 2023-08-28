@@ -94,38 +94,16 @@ bool Board::checkWinner()
 	//checks upper left diagonally
 	//does not work for 1 down on a 3x4
 	for (int i = 0; i < columns; i++) {
-		int counter = 0;
 		for (int j = 0; j < rows; j++) {
-			if (spaces[(j * columns) + j] == activePlayerChar) {
-				counter++;
-				if (counter == winCondition) {
+			if (spaces[(j * columns) + i] == activePlayerChar) {
+				if (checkInverseDiagonal(j, i) == true) {
 					return true;
 				}
-			}
-			else {
-				counter = 0;
 			}
 		}
 	}
 
-	//IDK what this does???
-	//commenting it out
-	/*
-	for (int i = 0; i < columns; i++) {
-		int counter = 0;
-		for (int j = 0; j < rows; j++) {
-			if (spaces[(j * rows) + j] == activePlayerChar) {
-				counter++;
-				if (counter == winCondition) {
-					return true;
-				}
-			}
-			else {
-				counter = 0;
-			}
-		}
-	}
-	*/
+
 
 	if (activePlayerChar == playerOne) {
 		activePlayerChar = playerTwo;
@@ -140,6 +118,115 @@ bool Board::checkWinner()
 
 	return false;
 }
+
+bool Board::checkInverseDiagonal(int j, int i) {
+	//called if a place has an active player char
+
+	//check up and right
+	int inverseDiagonal = 0;
+
+	for (double n = 0; n < winCondition; n++) {
+		int row = j + n;
+		int column = i - n;
+		if (row > rows - 1 || column > columns - 1 || row < 0 || column < 0) {
+			break;
+		}
+		if (spaces[(row * columns) + column] == activePlayerChar) {
+			inverseDiagonal++;
+			if (inverseDiagonal == winCondition) {
+				return true;
+			}
+		}
+	}
+	//check down and left
+	for (double n = 1; n < winCondition; n++) {
+		int row = j - n;
+		int column = i + n;
+
+		if (row > rows - 1|| column > columns - 1 || row < 0 || column < 0) {
+			break;
+		}
+		if (spaces[(row * columns) + column] == activePlayerChar) {
+			inverseDiagonal++;
+			if (inverseDiagonal == winCondition) {
+				return true;
+			}
+		}
+	}
+
+
+	int diagonal = 0;
+	for (double n = 0; n < winCondition; n++) {
+		int row = j - n;
+		int column = i - n;
+		if (row > rows - 1 || column > columns - 1 || row < 0 || column < 0) {
+			break;
+		}
+		if (spaces[(row * columns) + column] == activePlayerChar) {
+			diagonal++;
+			if (diagonal == winCondition) {
+				return true;
+			}
+		}
+	}
+	//check down and right
+	for (double n = 1; n < winCondition; n++) {
+		int row = j + n;
+		int column = i + n;
+
+		if (row > rows - 1 || column > columns - 1 || row < 0 || column < 0) {
+			break;
+		}
+		if (spaces[(row * columns) + column] == activePlayerChar) {
+			diagonal++;
+			if (diagonal == winCondition) {
+				return true;
+			}
+		}
+	}
+
+	return false;
+
+}
+
+/*
+bool Board::checkDiagonal(int j, int i) {
+	int diagonal = 0;
+
+	for (double n = 0; n < (winCondition / 2.0); n++) {
+		int row = j + n;
+		int column = i - n;
+		if (row > rows - 1 || column > columns - 1 || row < 0 || column < 0) {
+			break;
+		}
+		if (spaces[(row * columns) + column] == activePlayerChar) {
+			diagonal++;
+			if (diagonal == winCondition) {
+				return true;
+			}
+		}
+	}
+	//check down and left
+	for (double n = 1; n < (winCondition / 2.0); n++) {
+		int row = j - n;
+		int column = i + n;
+
+		if (row > rows - 1 || column > columns - 1 || row < 0 || column < 0) {
+			break;
+		}
+		if (spaces[(row * columns) + column] == activePlayerChar) {
+			diagonal++;
+			if (diagonal == winCondition) {
+				return true;
+			}
+		}
+	}
+
+	return false;
+
+}
+
+*/
 
 bool Board::checkTie()
 {

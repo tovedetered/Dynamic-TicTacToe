@@ -11,6 +11,8 @@ public:
 
 	void updateBoard();
 	bool checkWinner();
+	bool checkInverseDiagonal(int j, int i);
+	//bool checkDiagonal(int j, int i);
 	bool checkTie();
 
 	void playerTurn(int turn);
