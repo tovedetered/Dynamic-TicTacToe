@@ -27,6 +27,8 @@ int main() {
 
 	goodBye();
 
+	system("PAUSE");
+
 	return 0;
 }
 
@@ -210,8 +212,9 @@ void goodBye()
 {
 	cout << "***** Good Bye *****" << endl;
 	cout << "This Game was Made by:" << endl
-		<< "Spenser Kramer" << endl
+		<< "Spenser Kramer" << endl << endl
 		<< "With Help From: " << endl
-		<< "Trevor Kramer" << endl
-		<< "Thanks For Playing!" << endl;
+		<< "Trevor Kramer" << endl << endl
+		<< "Thanks For Playing!" << endl
+		<< "Press Any Key to exit!" << endl;
 }
