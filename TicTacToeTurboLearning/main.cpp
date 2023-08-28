@@ -164,6 +164,8 @@ void twoPlayerGame()
 			}
 			if (board->checkTie()) {
 				cout << "Its a Tie!" << endl;
+				running = false;
+				break;
 			}
 			cout << "**********************" << endl;
 
@@ -178,6 +180,8 @@ void twoPlayerGame()
 			}
 			if (board->checkTie()) {
 				cout << "Its a Tie!" << endl;
+				running = false;
+				break;
 			}
 			cout << "**********************" << endl;
 		}
