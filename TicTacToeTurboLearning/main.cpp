@@ -215,6 +215,6 @@ void goodBye()
 		<< "Spenser Kramer" << endl << endl
 		<< "With Help From: " << endl
 		<< "Trevor Kramer" << endl << endl
-		<< "Thanks For Playing!" << endl
-		<< "Press Any Key to exit!" << endl;
+		<< "Thanks For Playing!" << endl << endl
+		<< "Press Any Key to exit!" << endl << endl;
 }
