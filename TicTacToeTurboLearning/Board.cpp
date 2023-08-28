@@ -91,6 +91,8 @@ bool Board::checkWinner()
 			}
 		}
 	}
+	//checks upper left diagonally
+	//does not work for 1 down on a 3x4
 	for (int i = 0; i < columns; i++) {
 		int counter = 0;
 		for (int j = 0; j < rows; j++) {
@@ -105,6 +107,24 @@ bool Board::checkWinner()
 			}
 		}
 	}
+	//IDK what this does???
+	//commenting it out
+	/*
+	for (int i = 0; i < columns; i++) {
+		int counter = 0;
+		for (int j = 0; j < rows; j++) {
+			if (spaces[(j * rows) + j] == activePlayerChar) {
+				counter++;
+				if (counter == winCondition) {
+					return true;
+				}
+			}
+			else {
+				counter = 0;
+			}
+		}
+	}
+	*/
 
 	if (activePlayerChar == playerOne) {
 		activePlayerChar = playerTwo;
