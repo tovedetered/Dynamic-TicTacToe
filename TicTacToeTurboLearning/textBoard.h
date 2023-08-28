@@ -9,4 +9,3 @@ public:
 	void drawBoard();
 	void getInput();
 };
-

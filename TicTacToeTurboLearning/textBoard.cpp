@@ -48,12 +48,12 @@ void TextBoard::getInput()
 	while (inputCheck) {
 		std::cout << "Please indicate the column where you would like to play: ";
 		std::cin >> column;
-		column = CheckInput(column);
+		column = CheckCinInput(column);
 		while (true) {
 			if (column > columns + 1 || column < 1) {
 				std::cout << "Invalid Input, Enter a Number between 0 and " << columns + 1 << ": ";
 				std::cin >> column;
-				column = CheckInput(column);
+				column = CheckCinInput(column);
 			}
 			else {
 				break;
@@ -61,12 +61,12 @@ void TextBoard::getInput()
 		}
 		std::cout << "Please indicate the row where you would like to play: ";
 		std::cin >> row;
-		row = CheckInput(row);
+		row = CheckCinInput(row);
 		while (true) {
 			if (row > rows + 1 || rows < 1) {
 				std::cout << "Invalid Input, Enter a Number between 1 and " << rows + 1 << ": ";
 				std::cin >> row;
-				row = CheckInput(row);
+				row = CheckCinInput(row);
 			}
 			else {
 				break;
@@ -83,9 +83,7 @@ void TextBoard::getInput()
 		}
 
 	}
-	
 
 	selectedColumn = column;
 	selectedRow = row;
 }
-

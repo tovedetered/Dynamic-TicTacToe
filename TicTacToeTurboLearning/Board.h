@@ -37,4 +37,3 @@ private:
 	const char playerTwo = 'O';
 
 };
-

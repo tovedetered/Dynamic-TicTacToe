@@ -195,4 +195,3 @@ bool Board::checkTie()
 	}
 	return true;
 }
-

@@ -54,7 +54,7 @@ void mainMenu() {
 			<< "4. Quit" << endl
 			<< "*********************" << endl;
 		cin >> choice;
-		choice = CheckInput(choice);
+		choice = CheckCinInput(choice);
 
 		switch (choice) {
 		case 1:
@@ -82,17 +82,17 @@ void configGame()
 	cout << "***** Game Configurator *****" << endl
 		<< "# of columns (max 500): ";
 	cin >> columns;
-	columns = CheckInput(columns);
+	columns = CheckCinInput(columns);
 	columns = clamp(1, columns, 500);
 
 	cout << "# of rows (max 500): ";
 	cin >> rows;
-	rows = CheckInput(rows);
+	rows = CheckCinInput(rows);
 	rows = clamp(1, rows, 500);
 
 	cout << "Win condition (cannot be greater than either # of rows or columns): ";
 	cin >> winConditon;
-	winConditon = CheckInput(winConditon);
+	winConditon = CheckCinInput(winConditon);
 	winConditon = clamp(1, winConditon, columns);
 	winConditon = clamp(1, winConditon, rows);
 
@@ -121,7 +121,7 @@ void runGame() {
 		<< "1. Play With a Friend!" << endl
 		<< "2. Back" << endl;
 	cin >> choice;
-	choice = CheckInput(choice);
+	choice = CheckCinInput(choice);
 
 	switch (choice) {
 	 case 1:
@@ -193,7 +193,7 @@ void twoPlayerGame()
 		cout << "Would you like to play again?" << endl
 			<< "1 for Yes, 2 for No" << endl;
 		cin >> choice;
-		choice = CheckInput(choice);
+		choice = CheckCinInput(choice);
 		choice = clamp(1, choice, 2);
 		if (choice == 2) {
 			playing = false;
