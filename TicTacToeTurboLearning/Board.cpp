@@ -91,6 +91,20 @@ bool Board::checkWinner()
 			}
 		}
 	}
+	for (int i = 0; i < columns; i++) {
+		int counter = 0;
+		for (int j = 0; j < rows; j++) {
+			if (spaces[(j * columns) + j] == activePlayerChar) {
+				counter++;
+				if (counter == winCondition) {
+					return true;
+				}
+			}
+			else {
+				counter = 0;
+			}
+		}
+	}
 
 	if (activePlayerChar == playerOne) {
 		activePlayerChar = playerTwo;
