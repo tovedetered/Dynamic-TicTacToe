@@ -107,6 +107,7 @@ bool Board::checkWinner()
 			}
 		}
 	}
+
 	//IDK what this does???
 	//commenting it out
 	/*
